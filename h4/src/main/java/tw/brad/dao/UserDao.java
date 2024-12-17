@@ -29,6 +29,7 @@ public class UserDao {
 		Transaction transaction = session.beginTransaction();
 			
 		session.merge(user);
+		//session.update(user);
 			
 		transaction.commit();
 		session.close();

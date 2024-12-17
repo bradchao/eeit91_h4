@@ -1,6 +1,7 @@
 package tw.brad.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,7 +13,7 @@ public class Bike {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int uid;
+	//private int uid; ==> 關聯使用, 不屬於 Bike
 	private String brand;
 	private double speed;
 	public int getId() {
@@ -21,12 +22,12 @@ public class Bike {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUid() {
-		return uid;
-	}
-	public void setUid(int uid) {
-		this.uid = uid;
-	}
+//	public int getUid() {
+//		return uid;
+//	}
+//	public void setUid(int uid) {
+//		this.uid = uid;
+//	}
 	public String getBrand() {
 		return brand;
 	}
