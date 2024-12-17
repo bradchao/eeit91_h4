@@ -9,8 +9,10 @@ import org.hibernate.cfg.Configuration;
 
 import tw.brad.model.Bike;
 import tw.brad.model.Cart;
+import tw.brad.model.Course;
 import tw.brad.model.Info;
 import tw.brad.model.Member;
+import tw.brad.model.Student;
 import tw.brad.model.User;
 
 public class HibernateUtil {
@@ -29,6 +31,9 @@ public class HibernateUtil {
 
 				config.addAnnotatedClass(User.class);
 				config.addAnnotatedClass(Bike.class);
+
+				config.addAnnotatedClass(Student.class);
+				config.addAnnotatedClass(Course.class);
 
 				registry = new StandardServiceRegistryBuilder()
 						.applySettings(config.getProperties())
