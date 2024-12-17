@@ -53,6 +53,16 @@ public class Member {
 		this.info.setMember(this);
 	}
 	
+	//----------------------
+	@OneToOne(mappedBy = "member")
+	private Cart cart;
+
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	
 	
 }

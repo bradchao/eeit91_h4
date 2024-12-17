@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import tw.brad.model.Cart;
 import tw.brad.model.Info;
 import tw.brad.model.Member;
 
@@ -22,6 +23,7 @@ public class HibernateUtil {
 				
 				config.addAnnotatedClass(Member.class);
 				config.addAnnotatedClass(Info.class);
+				config.addAnnotatedClass(Cart.class);
 				
 				registry = new StandardServiceRegistryBuilder()
 						.applySettings(config.getProperties())
