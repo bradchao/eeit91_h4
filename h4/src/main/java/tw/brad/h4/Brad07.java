@@ -10,8 +10,8 @@ public class Brad07 {
 		UserDao dao = new UserDao();
 
 		User user = new User();
-		user.setName("Brad08");
-		dao.save(user);
+		user.setName("Brad10");
+		//dao.save(user);
 		
 		Bike b1 = new Bike();
 		b1.setBrand("G2");
@@ -25,7 +25,9 @@ public class Brad07 {
 		b2.setUser(user);
 		user.addBike(b2);
 		
-		dao.update(user);
+		//dao.update(user);
+		
+		dao.save(user);
 		
 	}
 
