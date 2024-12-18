@@ -20,14 +20,16 @@ public class StudentDao {
 		}
 	}
 
-	public void update(Student student) {
+	public Student update(Student student) {
 		Transaction transaction = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
 			transaction = session.beginTransaction();
 			session.merge(student);
 			transaction.commit();
+			return get(student.getId());
 		}catch(Exception e) {
 			System.out.println(e);
+			return null;
 		}
 	}
 	
