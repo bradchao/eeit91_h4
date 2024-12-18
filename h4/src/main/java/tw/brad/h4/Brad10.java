@@ -2,6 +2,7 @@ package tw.brad.h4;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -23,7 +24,10 @@ public class Brad10 {
 			CourseDao cDao = new CourseDao();
 			List<Course> courses =  cDao.getAll();
 			for (Course course: courses) {
-				System.out.printf("%d. %s\n", course.getId(), course.getCname());
+				Set<Student> students = course.getStudents();
+				if (!isExist(s1, students)) {
+					System.out.printf("%d. %s\n", course.getId(), course.getCname());
+				}
 			}
 			
 			Scanner scanner = new Scanner(System.in);
@@ -32,7 +36,6 @@ public class Brad10 {
 				int cid = scanner.nextInt();
 				if (cid == 0) break;
 				s1.addCourse(cDao.get(cid));
-				System.out.println();
 			}
 			
 			try(Session session = HibernateUtil.getSessionFactory().openSession()){
@@ -45,8 +48,19 @@ public class Brad10 {
 			
 		}
 		
-		
-		
 	}
+	
+	private static boolean isExist(Student s, Set<Student> students) {
+		boolean ret = false;
+		for (Student student : students) {
+			if (student.getId() == s.getId()) {
+				ret = true;
+				break;
+			}
+		}
+		return ret;
+	}
+	
+	
 
 }
