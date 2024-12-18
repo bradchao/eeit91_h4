@@ -1,5 +1,8 @@
 package tw.brad.h4;
 
+import java.util.List;
+import java.util.Scanner;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -12,33 +15,38 @@ import tw.brad.utils.HibernateUtil;
 public class Brad10 {
 
 	public static void main(String[] args) {
-//		StudentDao sDao = new StudentDao();
-//		Student s1 = sDao.getStudent(1);
-//		System.out.println(s1.getSname());
-		
-//		CourseDao cDao = new CourseDao();
-//		Course c1 = cDao.getCourse(1);
-//		Course c2 = cDao.getCourse(2);
-		
-//		s1.addCourse(c1);
-//		s1.addCourse(c2);
-		
-		try(Session session = HibernateUtil.getSessionFactory().openSession()){
-			Student s1 = session.get(Student.class, 2);
-			Course c1 = session.get(Course.class, 2);
-			Course c2 = session.get(Course.class, 4);
-			Course c3 = session.get(Course.class, 3);
-			s1.addCourse(c1);
-			s1.addCourse(c2);
-			s1.addCourse(c3);
+		StudentDao sDao = new StudentDao();
+		Student s1 = sDao.get(7);
+		if (s1 != null) {
+			System.out.printf("Welcome, %s\n", s1.getSname());
 			
-			Transaction transaction = session.beginTransaction();
-			session.merge(s1);
-			transaction.commit();
+			CourseDao cDao = new CourseDao();
+			List<Course> courses =  cDao.getAll();
+			for (Course course: courses) {
+				System.out.printf("%d. %s\n", course.getId(), course.getCname());
+			}
 			
-		}catch(Exception e) {
-			System.out.println(e);
+			Scanner scanner = new Scanner(System.in);
+			while (true) {
+				System.out.print("Which course? ");
+				int cid = scanner.nextInt();
+				if (cid == 0) break;
+				s1.addCourse(cDao.get(cid));
+				System.out.println();
+			}
+			
+			try(Session session = HibernateUtil.getSessionFactory().openSession()){
+				Transaction transaction = session.beginTransaction();
+				session.merge(s1);
+				transaction.commit();
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+			
 		}
+		
+		
+		
 	}
 
 }
