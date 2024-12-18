@@ -20,6 +20,12 @@ public class Student {
 	private int id;
 	private String sname;
 	
+	public Student() {
+		
+	}
+	public Student(String sname) {
+		this.sname = sname;
+	}
 	
 	public int getId() {
 		return id;

@@ -19,8 +19,8 @@ public class Course {
 	private String cname;
 	
 	public Course() {}
-	public Course(String name) {
-		this.cname = name;
+	public Course(String cname) {
+		this.cname = cname;
 	}
 	
 	public int getId() {
