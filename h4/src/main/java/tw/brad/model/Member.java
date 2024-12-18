@@ -16,6 +16,14 @@ public class Member {
 	private String passwd;
 	private String name;
 	
+	private byte[] icon;
+	
+	public byte[] getIcon() {
+		return icon;
+	}
+	public void setIcon(byte[] icon) {
+		this.icon = icon;
+	}
 	public int getId() {
 		return id;
 	}
